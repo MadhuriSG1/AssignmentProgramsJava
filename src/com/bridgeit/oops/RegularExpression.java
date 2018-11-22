@@ -25,22 +25,20 @@ public class RegularExpression {
 		System.out.println("Enter Contact Number  ");
 		String contactNo=scanner.nextLine();
 		
-		 pattern=Pattern.compile(input); 
-		 matcher=pattern.matcher(username);
-		 String Name=matcher.replaceAll("<<name>>");
+		 pattern=Pattern.compile("<<name>>"); //compiles the given regular expression into pattern
+		 matcher=pattern.matcher(input);      //Return matcher for given input
+		 input=matcher.replaceAll(username);  //Replace given string with new string
 		 
-		 pattern=Pattern.compile(input); 
-		 matcher=pattern.matcher(fullname);
-		 String fullName=matcher.replaceAll("<<full name>>");
+		 pattern=Pattern.compile("<<full name>>"); 
+		 matcher=pattern.matcher(input);
+		 input=matcher.replaceAll(fullname);
 		 
-		 pattern=Pattern.compile(input); 
-		 matcher=pattern.matcher(contactNo);
-		 String Date=matcher.replaceAll("<<91-xxxxxxxxxx>>");
+		 pattern=Pattern.compile("<<91-xxxxxxxxxx>>"); 
+		 matcher=pattern.matcher(input);
+		 input=matcher.replaceAll(contactNo);
 		
 		
-		System.out.println("  Hello\t" + Name+ ",We have your full name as" +fullName+ " in our system\t" + "your contact number is "+contactNo+  "Please,let us know in case of any clarification Thank you BridgeLabz"+Date);
-		
-		
+		System.out.println(input);//Print Modified output
 		
 		
 		
