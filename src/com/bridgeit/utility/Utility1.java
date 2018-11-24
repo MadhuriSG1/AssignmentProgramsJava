@@ -2,7 +2,9 @@ package com.bridgeit.utility;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,6 +20,8 @@ import java.util.Scanner;
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
+
+import com.bridgeit.dataStructure.OrderedLinkedList;
 
 /*import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;*/
@@ -1460,20 +1464,22 @@ return false;
 				}
 				String x[]=data.split(" ");   //By using split function split array and stored in string array
 				
-				LinkedList<String> li=new LinkedList<>();
+				UnorderedLinkedList<String> li=new UnorderedLinkedList<>();
 				for(int i=0;i<x.length;i++)
 				{
 					li.add(x[i]);                //Stored string in linkedlist
+					
 				}
-				Iterator<String> itr=li.iterator();
+				
+				/*Iterator<String> itr=li.iterator();
 				while(itr.hasNext())
 				{
 					System.out.println(itr.next());  //iterate linkedlist for display
 				}
-				
+				*/
 				System.out.println("Enter word for searching in list");
 				String S_word=ipstring();
-				if(li.contains(S_word))
+				if(li.search(S_word))
 				{
 					li.remove(S_word);
 				}
@@ -1483,19 +1489,20 @@ return false;
 				}
 				
 				System.out.println("Data after operation");
-				Iterator<String> itrator=li.iterator();
+				/*Iterator<String> itrator=li.iterator();
 				while(itrator.hasNext())
 				{
 					System.out.println(itrator.next());
-				}
+				}*/
 				
 				System.out.println("Size of List is= "+li.size());
-				
-				System.out.println("Enter List element to find index");
+			
+				li.display();
+				/*System.out.println("Enter List element to find index");
 				String item=ipstring();
 				int k=li.indexOf(item);
 				System.out.println("Index of list element is=  "+k);
-				
+				*/
 			}
 			catch(Exception e)
 			{
@@ -1503,6 +1510,78 @@ return false;
 			}
 		}
 		
+	////////////////////////////
+	/*public void UnorderedListSearching(String search)
+	{
+		try {
+		UnorderedLinkedList<String> list=new UnorderedLinkedList<String>();
+		FileInputStream fis=new FileInputStream("/home/administrator/Desktop/SearchString.txt");
+		Scanner sc=new Scanner(fis);
+		while(sc.hasNext())
+		{
+		list.add(sc.next());
+		}
+		boolean b=list.search(search);
+		if(!b)
+		{
+			list.add(search);
+		}
+		else
+		{
+			list.remove(search);
+		}
+		FileOutputStream fos=new FileOutputStream("/home/administrator/Desktop/SearchString.txt");
+		while(!list.isEmpty())
+		{
+			fos.write((list.pop(0)+" ").getBytes());
+		}
+		sc.close();
+		fis.close();
+		fos.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+*/
+	public static void orderedListSearching(int search)
+	{
+		try {
+			OrderedLinkedList<Integer> list=new OrderedLinkedList<Integer>();
+			FileInputStream fis=new FileInputStream("/home/bridgelabz/Desktop/Workspace/BasicPrograms/NoList.txt");
+			Scanner sc=new Scanner(fis);
+			while(sc.hasNext())
+			{
+			list.add(Integer.parseInt(sc.next()));
+			}
+			
+			boolean b=list.search(search);
+
+			if(!b)
+			{
+				list.add(search);
+			}
+			else
+			{
+				list.remove(search);
+			}
+			FileOutputStream fos=new FileOutputStream("/home/bridgelabz/Desktop/Workspace/BasicPrograms/NoList.txt");
+			
+			while(!list.isEmpty())
+			{
+				fos.write((list.pop(0)+" ").getBytes());
+			}
+			sc.close();
+			fis.close();
+			fos.close();
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	}
 		
 //(2)OrderedList
 	 
@@ -1531,7 +1610,7 @@ return false;
 				String string = "";
 				while ((string = br.readLine()) != null) // Read each line Store in string
 				{
-	/*String convert into integer and stored in integer array			*/	
+	//String convert into integer and stored in integer array				
 					x[i] = Integer.parseInt(string);
 					// System.out.println(x[i]);
 					i++;
@@ -1687,6 +1766,41 @@ return false;
 				}
 			}
 			
+		}
+		
+		public static int Banking(int n) {
+			int Amount = 5000;
+			Queue<Integer> queqe = new Queue<>();
+			for (int i = 0; i < n; i++) {   
+				queqe.enqueue(i + 1);
+			}
+		
+			while (queqe.size() > 0) {
+				System.out.println("Enter 1 For Deposit amount");
+				System.out.println("Enter 2 For Withdraw amount");
+				int result = Utility1.ipnumber();
+				switch (result) {
+				case 1:
+					System.out.println("Enter Amount To Deposit");
+					int deposit = Utility1.ipnumber();
+					Amount += deposit;
+					System.out.println("Person " + queqe.dequeue() + " Done");
+					break;
+				case 2:
+					System.out.println("Enter Amount To Withdraw");
+					int withdraw = Utility1.ipnumber();
+					if (withdraw > Amount) {
+						System.out.println("Insufficient Amount");
+						break;
+					} else {
+						Amount -= withdraw;
+						// System.out.println("Person "+q.dequeue()+" Done");
+
+						break;
+					}
+				}
+			}
+			return Amount;
 		}
 
 //[5]Palindrome		
@@ -1989,7 +2103,7 @@ public static void deckOfCardQueue() {
 	String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
 	String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 	String array[][] = new String[4][9];
-	QueqeUsingLinkedLCalender q = new QueqeUsingLinkedLCalender();
+	QueueLinkedList q = new QueueLinkedList();
 	// initialize deck
 	int n = suits.length * ranks.length;
 	String[] deck = new String[n];
@@ -2012,16 +2126,16 @@ public static void deckOfCardQueue() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 9; j++) {
 			array[i][j] = deck[i + j * 4];
-			q.enqueue(array[i][j] + "\t");
+			q.insert(array[i][j] + "\t");
 
 		}
-		q.enqueue("\n");
+		q.insert("\n");
 	}
 	// q.display1();
 	SortDeck(array, q);
 }
 
-public static void SortDeck(String[][] array, QueqeUsingLinkedLCalender q) {
+public static void SortDeck(String[][] array, QueueLinkedList q) {
 
 	char[] rank = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K' };
 	String[] cards = new String[51];
@@ -2040,10 +2154,10 @@ public static void SortDeck(String[][] array, QueqeUsingLinkedLCalender q) {
 			char cardRank = card.charAt(card.lastIndexOf(card));
 			if (cardRank == rank[i])
 			{
-				q.enqueue(card + "\t");
+				q.insert(card + "\t");
 			}
 		}
-		q.enqueue("\n");
+		q.insert("\n");
 	}
 	// q.display1(card);
 }

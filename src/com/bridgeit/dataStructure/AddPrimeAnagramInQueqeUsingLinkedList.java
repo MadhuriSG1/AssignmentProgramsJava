@@ -12,7 +12,7 @@ public class AddPrimeAnagramInQueqeUsingLinkedList {
 	}
 
 	private static void twoDAnagramQueue(int size) {
-		QueueUsingLinkedListPrime queqe=new QueueUsingLinkedListPrime();
+		QueueUsingLinkedListPrime<String> queqe=new QueueUsingLinkedListPrime<>();
 	
 		int number = size;
 		boolean status2, status, status1;
@@ -27,8 +27,9 @@ public class AddPrimeAnagramInQueqeUsingLinkedList {
 				
 				if (status2 && status && status1) // if condition is true then enque
 				{
-					queqe.enqueue(i); //Add number i in queqe
-					queqe.enqueue(j); //Add number j in queqe
+					
+					queqe.enqueue(i+""); //Add number i in queqe
+					queqe.enqueue(j+""); //Add number j in queqe
 				}
 
 			}

@@ -2,10 +2,10 @@ package com.bridgeit.dataStructure;
 
 import java.util.NoSuchElementException;
 
-public class QueqeUsingLinkedLCalender {
+public class QueqeUsingLinkedLCalender<T> {
 
-	public ListNodeForCalender front;
-	public ListNodeForCalender rear;
+	public ListNodeForCalender<T> front;
+	public ListNodeForCalender<T> rear;
 	public int length;
 
 //Create constructor 
@@ -23,7 +23,7 @@ public class QueqeUsingLinkedLCalender {
 //Add element in queqe
 	public void enqueue(String string)
 	{
-		ListNodeForCalender temp = new ListNodeForCalender(string); //create object of list node class
+		ListNodeForCalender<T> temp = new ListNodeForCalender(string); //create object of list node class
 		if(isEmpty())
 		{
 			front = temp;
@@ -42,7 +42,7 @@ public class QueqeUsingLinkedLCalender {
 		{
 			throw new NoSuchElementException();
 		}	
-		String result = front.data;
+		String result = (String) front.data;
 		front = front.next;
 		if(front == null)
 		{
@@ -56,7 +56,7 @@ public class QueqeUsingLinkedLCalender {
 		if(isEmpty()){
 			return;
 		}
-		ListNodeForCalender current = front;
+		ListNodeForCalender<T> current = front;
 		while(current!= null){
 			System.out.print(current.data);
 			current = current.next;

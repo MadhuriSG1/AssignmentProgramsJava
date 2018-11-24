@@ -14,6 +14,7 @@ public class DecKOfCards {
 	           deck[SUITS.length*i + j] = RANKS[i] + " of " + SUITS[j];//13*4=52 cards generated
 	         }
 	     }
+	    //Suffle cards
 	    for (int i = 0; i < n; i++) 
 	     {
 	        int r = i + (int) (Math.random() * (n-i));
@@ -21,6 +22,8 @@ public class DecKOfCards {
 	        deck[r] = deck[i];
 	        deck[i] = temp;
 	     }
+	    
+	    //Distributes 36 cards between 4 person 
 	    for(int i = 1; i <= 4; i++) //4 player
 	     {
 	        System.out.println("---------- PLAYER NUMBER: " + (i) + " HAVE CARDS ARE BELOW ----------");

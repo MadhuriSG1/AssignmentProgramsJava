@@ -13,7 +13,7 @@ public class AddPrimeAnagramInStackUsingLinkedList {
 		
 	}
 	public static void twoDAnagramReverse(int size) {
-		StackUsingLinkedList stack = new StackUsingLinkedList();
+		StackUsingLinkedList<Integer> stack = new StackUsingLinkedList<>();
 		int number = size;
 		boolean status2, status, status1;
 		

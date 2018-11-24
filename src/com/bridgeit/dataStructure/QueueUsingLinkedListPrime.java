@@ -2,11 +2,11 @@ package com.bridgeit.dataStructure;
 
 import java.util.NoSuchElementException;
 
-public class QueueUsingLinkedListPrime {
+public class QueueUsingLinkedListPrime<T> {
 	
 	
-	public ListNodeForPrime front;
-	public ListNodeForPrime rear;
+	public ListNodeForPrime<T> front;
+	public ListNodeForPrime<T> rear;
 	public int length;
 
 //create constructor
@@ -21,9 +21,9 @@ public class QueueUsingLinkedListPrime {
 		return length == 0;
 	}
 	/*Push(enque) data into queqe*/
-	public void enqueue(int data)
+	public void enqueue(T data)
 	{
-		ListNodeForPrime temp = new ListNodeForPrime(data); //create object of list node class
+		ListNodeForPrime<T> temp = new ListNodeForPrime(data); //create object of list node class
 		if(isEmpty())
 		{
 			front = temp;
@@ -42,7 +42,7 @@ public class QueueUsingLinkedListPrime {
 		{
 			throw new NoSuchElementException();
 		}	
-		int result = front.data;
+		int result = (int) front.data;
 		front = front.next;
 		if(front == null)
 		{
@@ -57,7 +57,7 @@ public class QueueUsingLinkedListPrime {
 		if(isEmpty()){
 			return;
 		}
-		ListNodeForPrime current = front;
+		ListNodeForPrime<T> current = front;
 		while(current!= null){
 			System.out.print(current.data + "--> ");
 			current = current.next;

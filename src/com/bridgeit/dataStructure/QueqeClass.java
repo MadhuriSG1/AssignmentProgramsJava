@@ -34,7 +34,7 @@ public class QueqeClass {
 	} 
 	else 
 	{
-	front++;
+	front++;//Deque element from queqe then front incremented
 	}
 	}
 //check for  queqe is empty

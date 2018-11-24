@@ -11,7 +11,7 @@ public class Prime_2DArray {
 	      int lowest_Range=Utility1.ipnumber();//take lowest range
 	      System.out.println("Enter highest range number");
 	      int highest_Range=Utility1.ipnumber();//take highest range
-	  System.out.println("\nPrime numbers:\n");
+	     System.out.println("\nPrime numbers:\n");
 		p.primeCalArray(lowest_Range,highest_Range);//
 		p.print();
 

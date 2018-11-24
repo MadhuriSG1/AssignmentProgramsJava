@@ -2,10 +2,10 @@ package com.bridgeit.dataStructure;
 
 import java.util.EmptyStackException;
 
-public class StackUsingLinkedList {
+public class StackUsingLinkedList<T> {
 
 	
-	public ListNodeForPrime top;
+	public ListNodeForPrime<T> top;
 	int length;
 	
 	public int length(){
@@ -15,9 +15,9 @@ public class StackUsingLinkedList {
 		return length == 0;	
 	}
 	/*Push data into stack*/
-	public void push(int data)
+	public void push(T data)
 	{
-		ListNodeForPrime temp = new ListNodeForPrime(data); //Create ListNode object temp 
+		ListNodeForPrime<T> temp = new ListNodeForPrime(data); //Create ListNode object temp 
 		temp.next = top;
 		top = temp;
 		length++;
@@ -28,7 +28,7 @@ public class StackUsingLinkedList {
 		{
 			throw new EmptyStackException();
 		}
-		int result = top.data;
+		int result = (int) top.data;
 		top = top.next;
 		length--;
 		return result;	
@@ -40,7 +40,7 @@ public class StackUsingLinkedList {
 		{
 			throw new EmptyStackException();	
 		}
-		return top.data;		
+		return (int) top.data;		
 	}
 
 	public void reverse()
@@ -58,7 +58,7 @@ public class StackUsingLinkedList {
 			return;
 		}
 
-		ListNodeForPrime current = top; //For getting reverse we take current=top 
+		ListNodeForPrime<T> current = top; //For getting reverse we take current=top 
 		while(current!= null)
 		{
 			System.out.print(current.data + "--> ");
