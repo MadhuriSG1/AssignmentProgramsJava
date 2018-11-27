@@ -17,8 +17,8 @@ public class StackUsingLinkedList<T> {
 	/*Push data into stack*/
 	public void push(T data)
 	{
-		ListNodeForPrime<T> temp = new ListNodeForPrime(data); //Create ListNode object temp 
-		temp.next = top;
+		ListNodeForPrime<T> temp = new ListNodeForPrime(data); //Creates temp object of node
+		temp.next = top;//
 		top = temp;
 		length++;
 	}

@@ -11,7 +11,7 @@ public class RegularExpression {
 		Scanner scanner=new Scanner(System.in);
 		Pattern pattern;
 		Matcher matcher;
-		String input="  Hello <<name>>, We have your full name as <<full name>> in our system"+" your contact number is 91-xxxxxxxxxx" + "Please,let us know in case of any clarification Thank you BridgeLabz 21/11/2018."; 
+		String input="Hello <<name>>, We have your full name as <<full name>> in our system, your contact number is <<91-xxxxxxxxxx>>,Please,let us know in case of any clarification Thank you BridgeLabz <<21/11/2018>>."; 
 		
 		System.out.println("Enter Name");
 		String username=scanner.nextLine();
@@ -25,6 +25,9 @@ public class RegularExpression {
 		System.out.println("Enter Contact Number  ");
 		String contactNo=scanner.nextLine();
 		
+		System.out.println("Enter Date");
+		String date=scanner.nextLine();
+		
 		 pattern=Pattern.compile("<<name>>"); //compiles the given regular expression into pattern
 		 matcher=pattern.matcher(input);      //Return matcher for given input
 		 input=matcher.replaceAll(username);  //Replace given string with new string
@@ -36,6 +39,10 @@ public class RegularExpression {
 		 pattern=Pattern.compile("<<91-xxxxxxxxxx>>"); 
 		 matcher=pattern.matcher(input);
 		 input=matcher.replaceAll(contactNo);
+		 
+		 pattern=Pattern.compile("<<21/11/2018>>"); 
+		 matcher=pattern.matcher(input);
+		 input=matcher.replaceAll(date);
 		
 		
 		System.out.println(input);//Print Modified output

@@ -20,7 +20,8 @@ public class UnorderedLinkedList<E extends Comparable<E>> implements Comparator<
 	}
 
 	public void add(E element) {
-		if (start == null) {
+		if (start == null) {//here we check start is null bcoz if start is null then 
+			                       //element assign to start n start becomes end newly added element node becomes start 
 			start = new Node<E>();
 			start.element = element;
 			start.next = null;
@@ -30,7 +31,7 @@ public class UnorderedLinkedList<E extends Comparable<E>> implements Comparator<
 		}
 		Node<E> temp = new Node<E>();
 		temp.element = element;
-		temp.next = start;
+		temp.next = start;//
 		start = temp;
 		value++;
 	}
@@ -38,7 +39,7 @@ public class UnorderedLinkedList<E extends Comparable<E>> implements Comparator<
 	public boolean remove(E item) {
 		Node<E> ptr = start;
 		Node<E> ptr2 = ptr;
-		while (ptr != null && compare(ptr.element, item) != 0) {
+		while (ptr != null && compare(ptr.element, item) != 0) {//compare when both are not equal
 			ptr2 = ptr;
 			ptr = ptr.next;
 		}

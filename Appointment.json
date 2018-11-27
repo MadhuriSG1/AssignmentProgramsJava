@@ -1,0 +1,6 @@
+[{"patient":{"pname":"Priti","mobileNumber":1234567890,"age":16,"id":2},"appointtime":"AM","doctorID":3},
+{"patient":{"pname":"Priyanka","mobileNumber":9876543210,"age":22,"id":3},"appointtime":"AM","doctorID":1},
+{"patient":{"pname":"rani","mobileNumber":123456,"age":10,"id":4},"appointtime":"AM","doctorID":1},
+{"patient":{"pname":"Soni","mobileNumber":789456,"age":15,"id":5},"appointtime":"AM","doctorID":1},
+{"patient":{"pname":"Aanju","mobileNumber":456123,"age":20,"id":6},"appointtime":"AM","doctorID":1},
+{"patient":{"pname":"Abhi","mobileNumber":789456,"age":26,"id":7},"appointtime":"AM","doctorID":1}]

@@ -5,7 +5,7 @@ public class QueueLinkedList {
 public class OrderedLinkedList<T extends Comparable<T>>{
 
 	MyNode<T> head;	//starting node
-	MyNode<T> current;	//last node
+	MyNode<T> current;
 	int position;	//position of last node
 
 	

@@ -26,7 +26,7 @@ public class DecKOfCards {
 	    //Distributes 36 cards between 4 person 
 	    for(int i = 1; i <= 4; i++) //4 player
 	     {
-	        System.out.println("---------- PLAYER NUMBER: " + (i) + " HAVE CARDS ARE BELOW ----------");
+	        System.out.println("PLAYER NUMBER: " + (i) + " HAVE CARDS ARE BELOW ");
 	        for (int j = 0; j < 9; j++) //9 player
 	         {
 	           System.out.println(deck[i+j*4] + " (Card " + (i+j*4)+")");//here 36 cards generated

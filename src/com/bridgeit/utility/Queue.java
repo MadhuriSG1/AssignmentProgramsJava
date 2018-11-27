@@ -1,7 +1,7 @@
 package com.bridgeit.utility;
 
 
-		public class Queue <E> {
+public class Queue <E> {
 			
 			private Node<E> head=null;
 			private Node<E> end=null;
@@ -59,6 +59,16 @@ package com.bridgeit.utility;
 				return size;
 			}
 	
+			void display()
+			{
+				Node<E> n = head;
+				while(n.next!=null)
+				{
+					System.out.println(n.element);
+					n = n.next;
+				}
+				System.out.println(n.element);
+			}
 
 	}
 

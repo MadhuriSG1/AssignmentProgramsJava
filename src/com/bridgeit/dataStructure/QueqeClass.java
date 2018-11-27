@@ -25,7 +25,7 @@ public class QueqeClass {
 	rear = rear + 1;
 	}
 	}
-//Deque element from queqe
+//Deque1 element from queqe
 	public void deQue() 
 	{
 	if (isEmpty()) 
@@ -34,7 +34,7 @@ public class QueqeClass {
 	} 
 	else 
 	{
-	front++;//Deque element from queqe then front incremented
+	front++;//Deque1 element from queqe then front incremented
 	}
 	}
 //check for  queqe is empty

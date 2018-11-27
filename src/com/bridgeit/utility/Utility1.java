@@ -6,16 +6,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 //import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 import org.json.simple.*;
@@ -1382,7 +1386,7 @@ return false;
 				string2=string2+string1.charAt(i);
 			}
 			//for adding zero before binary number
-			for(int j=string2.length();j<32-string2.length();j++)
+			for(int j=string2.length();j<8-string2.length();j++)
 			{
 				string2="0"+string2;
 			}
@@ -1806,17 +1810,17 @@ return false;
 //[5]Palindrome		
 		/**
 		 * @author MadhuriG
-		 * @function check whether String is a palindrome by using Deque
+		 * @function check whether String is a palindrome by using Deque1
 
 		 * @param string is input string to check weither string is palindrome or not
 		 */
 		public static  void palindromeDequeUti(String string) 
 		{
-			Deque<Character> dequelist = new LinkedList<Character>();
+			Deque1<Character> dequelist = new Deque1<>();
 
 			for (int i = 0; i < string.length(); i++) 
 			{
-				dequelist.add(string.charAt(i));//Convert String into character insert element in deque 
+				dequelist.addFront(string.charAt(i));//Convert String into character insert element in deque 
 			}
 
 			char front =  '0' , rear =  '0' ;
@@ -1824,8 +1828,8 @@ return false;
 
 			do 
 			{
-				front = dequelist.removeFirst();//remove first element of deque
-				rear =  dequelist.removeLast();//remove last element of deque
+				front = dequelist.removeFront();//remove first element of deque
+				rear =  dequelist.removeRear();//remove last element of deque
 				if (front != rear) // check first character with last  
 				{
 					f = 1;
@@ -2030,21 +2034,6 @@ public static void RisePulseWheat(FileReader fileRead1)
 
 		throws IOException, ParseException, org.json.simple.parser.ParseException 
 {
-	/*
-	//JSON parser object to parse read file
-	JSONParser jsonparse = new JSONParser();
-	
-	  //Read JSON file
-    Object object =  jsonparse.parse(fileRead1);
-
-	//System.out.println(object);
-
-		JSONArray array=(JSONArray)object;	
-		//System.out.println(array);
-		
-		  //Iterate over employee array
-		array.forEach(item -> System.out.println(item));*/
-		
 	//JSON parser object to parse read file
 		JSONParser parse=new JSONParser();
    //Read JSON file
@@ -2086,7 +2075,7 @@ public static void stockReport(FileReader fileRead)
 		JSONObject obj = (JSONObject) object.get(topkey);//obj store sub-obj contains in main key
 		System.out.println("Company name:" + topkey);
 		long price = (Long) obj.get("Price");//Returns value for given key
-		long num = (Long) obj.get("NumShare");
+		long num = (Long) obj.get("NumOfShare");
 		total += price * num;
 
 		System.out.println("Price:" + price);
@@ -2103,9 +2092,9 @@ public static void deckOfCardQueue() {
 	String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
 	String[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 	String array[][] = new String[4][9];
-	QueueLinkedList q = new QueueLinkedList();
+	Queue<String> q = new Queue();
 	// initialize deck
-	int n = suits.length * ranks.length;
+	int n = suits.length * ranks.length;//n=52 
 	String[] deck = new String[n];
 	for (int i = 0; i < ranks.length; i++) {
 		for (int j = 0; j < suits.length; j++) {
@@ -2126,23 +2115,25 @@ public static void deckOfCardQueue() {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 9; j++) {
 			array[i][j] = deck[i + j * 4];
-			q.insert(array[i][j] + "\t");
+			q.enqueue(array[i][j] + "\t");
 
 		}
-		q.insert("\n");
+		q.enqueue("\n");
 	}
-	// q.display1();
+	 q.display();
 	SortDeck(array, q);
+	 
+	
 }
 
-public static void SortDeck(String[][] array, QueueLinkedList q) {
+public static void SortDeck(String[][] array, Queue<String> q) {
 
 	char[] rank = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K' };
 	String[] cards = new String[51];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 9; j++) {
 			cards[j] = array[i][j];
-			// System.out.print(cards[j]);
+			 System.out.print(cards[j]);
 
 		}
 	}
@@ -2150,16 +2141,330 @@ public static void SortDeck(String[][] array, QueueLinkedList q) {
 	for (int i = 0; i < rank.length; i++) {
 		for (int j = 0; j < cards.length; j++) {
 			card = cards[j];
-			// System.out.print(card);
+			 System.out.print(card);
 			char cardRank = card.charAt(card.lastIndexOf(card));
 			if (cardRank == rank[i])
 			{
-				q.insert(card + "\t");
+				q.enqueue(card + "\t");
 			}
 		}
-		q.insert("\n");
+		q.enqueue("\n");
 	}
-	// q.display1(card);
+	 q.display();
 }
+/*
+public <T> void DeckOfCardsInQueue(String [] Rank,String [] suits)
+{
+Queue<T> deckofcard=new Queue<>();
+String [] array=new String [52];
+for(int i=0;i<array.length;i++)
+{
+	String quo=suits[i/13];
+	
+	String rem=Rank[i%13];
+ array[i] = quo+rem;
+//	System.out.print(array[i]+" ");
+}	
+System.out.println();
+Random r=new Random();
+
+int length=array.length;
+//System.out.print(length + " length of ARRAY");
+for(int i=0;i<array.length;i++)
+{
+	int index=r.nextInt(52);
+	//System.out.print(index+ " ");
+	
+	String temp=array[i];
+	array[i]=array[index];
+	array[index]=temp;
+}
+for(String u : array)
+{
+	System.out.println(u);
+	//System.out.println("\n");
+}
+System.out.println();
+
+
+String [] []str=new String [suits.length][9];
+for (int i = 0; i < 4; i++) 
+{
+	System.out.print("Player"+(i+1)+ "\t");
+	//System.out.println();
+	
+	for (int j = 0; j <9 ; j++) 
+	{
 		
+		str[i][j]=array[i+j*4];
+		deckofcard.enqueue((T) str[i][j]);
+		//System.out.print("       " +str[i][j]+ "        ");
+		
+	}
+	
+	System.out.println();
 }
+}
+*/
+	
+
+public static void StockAccount() throws IOException, ParseException, org.json.simple.parser.ParseException {
+	System.out.println("Enter Your Chocie");
+	System.out.println("1.Create a new Account");
+	System.out.println("2.Buy Shares");
+	System.out.println("3.Sell Shares");
+	System.out.println("4.Print Report");
+	System.out.println("5.Exit");
+
+	int choice = Utility1.ipnumber();
+	switch (choice) {
+	case 1:
+		System.out.println("Creating Account");
+		createAcc();
+		break;
+	case 2:
+		System.out.println("You are buying Shares");
+		buyShare();
+		break;
+	case 3:
+		System.out.println("You are selling shares");
+		sellShare();
+		break;
+	case 4:
+		System.out.println("Print Report");
+		printReport();
+		break;
+	case 5:
+		System.out.println("Exit");
+		break;
+	default:
+		break;
+	}
+}
+
+public static void createAcc() throws IOException, ParseException, org.json.simple.parser.ParseException {
+	File file = new File("customerShare.json");
+	if (file.exists()) {
+
+		boolean check = true;
+		while (check == true) {
+			System.out.println("Want to add user: yes or no");
+			String ch = ipstring();
+			if (ch.equals("yes")) {
+
+				FileReader fr = new FileReader(file);
+				JSONParser parser = new JSONParser();//parse json file into java objects
+				JSONArray arr1 = (JSONArray) parser.parse(fr);//JSONArray is order sequence of values
+				JSONObject json = new JSONObject();//creates json object
+				System.out.println("Enter name");
+				String name = ipstring();
+				System.out.println("Enter balance");
+				int bal = ipnumber();
+				json.put("Name", name);//here passing objects
+				json.put("Balance", bal);
+				json.put("ShareCount", 100);
+
+				arr1.add(json);//here we pass all objects in array
+				FileWriter fw = new FileWriter(file);
+				fw.write(JSONArray.toJSONString(arr1));
+				fw.flush();
+				fw.close();
+
+			} else {
+				check = false;
+			}
+		}
+
+	} else {
+		System.out.println("File does not exits");
+	}
+	StockAccount();
+}
+
+//here user bying share so balance reduce n number of share increses
+public static void buyShare() throws IOException, ParseException, org.json.simple.parser.ParseException {
+	File file = new File("customerShare.json");
+	File file1 = new File("companyStock.json");
+	if (file.exists() && file1.exists())
+
+	{
+
+		// reading stock file
+		FileReader fr = new FileReader(file);//give file to read
+		JSONParser parser = new JSONParser();//parse json file into java objects
+		JSONArray stock = (JSONArray) parser.parse(fr);
+
+		// reading share file
+		FileReader sf = new FileReader(file1);
+		JSONParser parser1 = new JSONParser();
+		JSONArray share = (JSONArray) parser1.parse(sf);
+
+		System.out.println("Enter the user");
+		String name = ipstring();
+		Iterator<?> itr = stock.iterator();//iterator for customer json
+		Iterator<?> itr1 = share.iterator();//iterator for company json
+		boolean flag = false;
+		while (itr.hasNext()) { //For comparing user name with stored we have to use the iterate customer.json
+			JSONObject obj = (JSONObject) itr.next();//
+			if (obj.get("Name").equals(name)) {
+				System.out.println("Enter the share sysmbol to buy share:[@,!,#]");
+				String sym = ipstring();
+				/*
+				 * obj.put("Share symbol", sym);
+				 * if(obj.get("Share Symbol").equals(sym)) {
+				 */
+				while (itr1.hasNext()) { //symbol in company json so iterate that
+					JSONObject obj1 = (JSONObject) itr1.next();
+					if (obj1.get("Symbol").equals(sym)) {
+						System.out.println("Enter the amount to Buy share");
+						int amt = ipnumber();
+						int bal = Integer.parseInt(obj.get("Balance").toString());//taken from customerShare
+						
+						int noShare = Integer.parseInt(obj.get("ShareCount").toString());//taken from customerShare
+
+						int price = Integer.parseInt(obj1.get("Price").toString());//taken from companyStock
+
+						int stockShare = Integer.parseInt(obj1.get("Count").toString());//taken from companyStock
+						
+						int numofshare = amt / price;//amount is divided by Price we get from companyShare
+
+						int newbal = bal - amt;//buying share so new balance reduce n number 
+						int sharecountcus = noShare + numofshare;//sharecount increases of user
+						int sharecountstock = stockShare - numofshare;//n company share count reduced
+
+						obj.remove("Balance");
+						obj.remove("ShareCount");
+						obj1.remove("Count");
+
+						obj.put("Balance", newbal);
+						obj.put("ShareCount", sharecountcus);
+						obj1.put("Count", sharecountstock);
+						Date d = new Date();
+						String date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a").format(d);
+						System.out.println("Date " + date);
+						flag = true;
+						break;
+					}
+				}
+			}
+			FileWriter fs = new FileWriter(file);
+			fs.write(JSONValue.toJSONString(stock));
+			fs.flush();
+			fs.close();
+		}
+		if (flag == false) {
+			System.out.println("User name not exits");
+		}
+		FileWriter fw = new FileWriter(file1);
+		fw.write(JSONValue.toJSONString(share));
+		fw.flush();
+		fw.close();
+	} else {
+		System.out.println("File does not exits");
+	}
+	StockAccount();
+}
+
+//here we selling shares so balance increses and number of shares of user decreses and companys count share increses 
+public static void sellShare() throws IOException, ParseException, org.json.simple.parser.ParseException {
+	File file = new File("customerShare.json");
+	File file1 = new File("companyStock.json");
+	if (file.exists() && file1.exists()) {
+		// Scanner scan = new Scanner(System.in);
+		// reading stock file
+		FileReader fr = new FileReader(file);
+		JSONParser parser = new JSONParser();
+		JSONArray stock = (JSONArray) parser.parse(fr);
+		// reading share file
+
+		FileReader sf = new FileReader(file1);
+		JSONParser parser1 = new JSONParser();
+		JSONArray share = (JSONArray) parser1.parse(sf);
+
+		System.out.println("Enter the user");
+		String name = ipstring();
+		Iterator<?> itr = stock.iterator();//iterate customerShare.json
+		Iterator<?> itr1 = share.iterator();//iterate companyShare.json
+		boolean flag = false;
+		while (itr.hasNext()) {
+			JSONObject obj = (JSONObject) itr.next();
+			if (obj.get("Name").equals(name)) {
+				System.out.println("Enter the share sysmbol to sale share:[@,!,#]");
+				String sym = ipstring();
+				System.out.println("Enter the number of share to sale");
+				int count = ipnumber();
+				// obj.put("Share Symbol", sym);
+				while (itr1.hasNext()) {
+					JSONObject obj1 = (JSONObject) itr1.next();
+					if (obj1.get("Symbol").equals(sym)) {//here we chaecking entered symbol is available or not in CompanyShare
+						int bal = Integer.parseInt(obj.get("Balance").toString());//CustomerShare.json balance taken
+						int price = Integer.parseInt(obj1.get("Price").toString());//Taken from CompanyStock.json
+						int noShare = Integer.parseInt(obj.get("ShareCount").toString());//taken from CustomerShare.json
+						int stockShare = Integer.parseInt(obj1.get("Count").toString());//Taken from CompanyStock.json
+						int saleprize = count * price;//calculating for newbalance
+						int newbal = bal + saleprize;
+						int sharecountscustomer = noShare - count;//after sell sharecount reduced 
+
+						int sharecountstockcompany = stockShare + count;
+						if (sharecountscustomer > 0 && noShare > 0) {
+							obj.remove("Balance"); //remove old values
+							obj.remove("ShareCount");
+							obj1.remove("Count");
+							obj.put("Balance", newbal);//store updated values
+							obj.put("ShareCount", sharecountscustomer);
+							obj1.put("Count", sharecountstockcompany);
+						} else {
+							System.out.println("No Shares Available");
+						}
+						Date d = new Date();
+						String date = new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a").format(d);
+						System.out.println("Date " + date);
+						flag = true;
+						break;
+					}
+
+				}
+			}
+
+			FileWriter fs = new FileWriter(file);
+			fs.write(JSONValue.toJSONString(stock));
+			fs.flush();
+			fs.close();
+		}
+		if (flag == false) {
+			System.out.println("User name not exits");
+		}
+		FileWriter fw = new FileWriter(file1);
+		fw.write(JSONValue.toJSONString(share));
+		fw.flush();
+		fw.close();
+	} else {
+		System.out.println("File Does not exits");
+	}
+	StockAccount();
+}
+
+public static void printReport() throws IOException, ParseException, org.json.simple.parser.ParseException {
+
+	File file = new File("customerShare.json");
+
+	if (!file.exists()) {//if file not exists n file having 
+		System.out.println("NO customer is there.");
+	} else {
+		FileReader file1 = fileRead1("customerShare.json");
+		JSONParser parser = new JSONParser();
+		JSONArray shareArray = (JSONArray) parser.parse(file1);
+		Iterator<?> iterator = shareArray.iterator();
+		while (iterator.hasNext()) {
+			JSONObject shareobj = (JSONObject) iterator.next();
+			System.out.println(shareobj);
+		}
+
+	}
+	System.out.println();
+	StockAccount();
+}
+
+
+}
+
