@@ -14,13 +14,13 @@ package com.bridgeit.oops;
 		
 
 		public void operation(ArrayList<Person> arrayRead) {
-			// list=AddressManager.listReturn();
+			
 			list = arrayRead;
 			boolean status = true;
 			do {
 				System.out.println("Choose Operation you want to do");
 				System.out
-						.println("1. Add\t2. Edit\t3. SortById\t4. SortByZip\t5. Show\t6. Back");
+						.println("1. Add\t2. Edit\t3. SortById\t4. SortByZip\t5. Show\t6. Delete\t7. Back");
 				switch (s.nextInt()) {
 				case 1:
 					add();
@@ -38,6 +38,9 @@ package com.bridgeit.oops;
 					print();
 					break;
 				case 6:
+					delete();
+					break;
+				case 7:
 					status = false;
 					break;
 				}
@@ -70,8 +73,8 @@ package com.bridgeit.oops;
 			System.out.println("Enter the State:");
 			String state = s.next();
 			address.setState(state);
-			person.setAddress(address);
-			list.add(person);
+			person.setAddress(address);//using has relationship
+			list.add(person);//Person info added in list 
 
 		}
 //edit person info by according to name
@@ -79,7 +82,7 @@ package com.bridgeit.oops;
 			System.out.println("Enter your First name:");
 			String fname = s.next();
 
-			Iterator<Person> iterator = list.listIterator();
+			Iterator<Person> iterator = list.listIterator();//iterate list of person
 
 			while (iterator.hasNext()) {
 				Person person = iterator.next();

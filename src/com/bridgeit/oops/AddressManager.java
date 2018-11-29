@@ -10,17 +10,6 @@ import org.codehaus.jackson.type.TypeReference;
 
 import com.bridgeit.utility.Utility1;
 
-/*import java.io.File;
-
-	import java.io.IOException;
-	import java.util.ArrayList;
-	import java.util.Scanner;
-
-	import org.codehaus.jackson.map.ObjectMapper;
-	import org.codehaus.jackson.type.TypeReference;
-    import com.bridgeit.utility.Utility1;
-*/
-	
 
 public class AddressManager implements AddressManagerInterface {
 	ObjectMapper objectMapper = new ObjectMapper();
@@ -70,7 +59,7 @@ public class AddressManager implements AddressManagerInterface {
 		ArrayList<Person> arrayList = addressbook.list();
 
 		try {
-			objectMapper.writeValue(file, arrayList);
+			objectMapper.writeValue(file, arrayList);//writeValue from arraylist to file
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
